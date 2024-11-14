@@ -20,7 +20,7 @@ class TestParentNode(unittest.TestCase):
     def test_nested_parents(self):
         node = ParentNode("p", [LeafNode("b", "Bold text"), LeafNode(None, "Normal text"), ] )
         node2 = ParentNode("p", [node, LeafNode("i", "italic text"), LeafNode(None, "Normal text"), ])
-        print(node2.to_html())
+        #print(node2.to_html())
 
 
 
