@@ -1,11 +1,15 @@
 from textnode import TextNode
 from textnode import TextType
 from leafnode import LeafNode
+from splitNodesDelimiter import split_nodes_delimiter
+import re
+
 
 
 def main():
-    text_node = TextNode("words", TextType.BOLD, "www.derp.com")
-    print(text_node)
+    #text_node = TextNode("running main", TextType.BOLD, "www.derp.com")
+    #print(text_node)
+    pass
 
 def text_node_to_html_node(text_node: TextNode):
     #textnode - self, text, text_type, url=None
@@ -14,7 +18,7 @@ def text_node_to_html_node(text_node: TextNode):
     props = {}
     value = text_node.text
     match text_node.text_type:
-        case TextType.NORMAL:
+        case TextType.TEXT:
             tag = None
         case TextType.BOLD:
             tag = "b"
@@ -34,5 +38,16 @@ def text_node_to_html_node(text_node: TextNode):
             raise Exception("selection not found")
 
     return LeafNode(tag, value, props)
+
+def extract_markdown_images(text):
+    result = re.findall(r"!\[([^\[\]]*)\]\(([^\(\)]*)\)", text)
+    return result
+
+def extract_markdown_links(text):
+    result = re.findall(r"(?<!!)\[([^\[\]]*)\]\(([^\(\)]*)\)", text)
+    return result
+
+def text_to_textnodes(text):
+    pass
 
 main()
