@@ -14,6 +14,12 @@ class TestSplitNodesDelimiter(unittest.TestCase):
         self.assertEqual(node_list[1].text_type, TextType.CODE)
         self.assertEqual(node_list[2].text, " in it")
         self.assertEqual(node_list[2].text_type, TextType.TEXT)
+        #print(node_list)
+
+    def test_bold_delimiter(self):
+        node = TextNode("this has a **bold** word in it", TextType.TEXT)
+        node_list = split_nodes_delimiter([node], "**", TextType.TEXT)
+        #print(node_list)
 
 
 if __name__ == "__main__":

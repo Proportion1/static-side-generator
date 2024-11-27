@@ -1,8 +1,6 @@
 from textnode import TextNode, TextType
 from main import extract_markdown_links
-
 from typing import List
-
 
 def split_nodes_link(old_nodes: List[TextNode]):
     node_list = []
@@ -19,13 +17,13 @@ def split_nodes_link(old_nodes: List[TextNode]):
                 for link in links:
                     # Split the text around the link markdown
                     parts = remaining_text.split(f"[{link[0]}]({link[1]})", 1)
-                    print(parts)
+
                     # Create a TextNode for text before the markdown (if any)
                     if parts[0]:
                         node_list.append(TextNode(parts[0], TextType.TEXT))
                     
                     # Create a TextNode for the image itself
-                    node_list.append(TextNode(link[0], TextType.IMAGE, link[1]))
+                    node_list.append(TextNode(link[0], TextType.LINK, link[1]))
 
                     # Remaining text after this image
                     remaining_text = parts[1]

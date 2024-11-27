@@ -1,7 +1,8 @@
 from textnode import TextNode
 from textnode import TextType
 from leafnode import LeafNode
-from splitNodesDelimiter import split_nodes_delimiter
+#from split_nodes_image import split_nodes_image
+#from split_nodes_link import split_nodes_link
 import re
 
 
@@ -47,7 +48,18 @@ def extract_markdown_links(text):
     result = re.findall(r"(?<!!)\[([^\[\]]*)\]\(([^\(\)]*)\)", text)
     return result
 
-def text_to_textnodes(text):
-    pass
+def markdown_to_blocks(markdown):
+    
+    blocks = markdown.split("\n\n")
+    new_blocks = []
+    for block in blocks:
+        if block:
+            new_blocks.append(block.strip())
+    return new_blocks
+
+def block_to_block_type(block):
+    start = block.split(" ", 1)
+    
+
 
 main()
